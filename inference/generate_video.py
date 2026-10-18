@@ -16,7 +16,8 @@ def main(argv=None):
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--keep-steps", type=int, default=KEEP_STEPS)
     parser.add_argument("--seed", type=int, default=SEED)
-    parser.add_argument("--text-device", default="cuda:1")
+    parser.add_argument("--text-device", default="auto",
+                        help="auto: cuda:1 with multiple GPUs, otherwise the generation device")
     parser.add_argument("--generation-device", default="cuda:0")
     args = parser.parse_args(argv)
     if not 0 <= args.keep_steps <= STEPS:

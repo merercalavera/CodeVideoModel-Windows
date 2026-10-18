@@ -25,7 +25,8 @@ def main():
                         help="Reuse the anchor image instead of editing it; only for an unchanged first frame")
     parser.add_argument("--keep-steps", type=int, default=KEEP_STEPS)
     parser.add_argument("--seed", type=int, default=SEED)
-    parser.add_argument("--text-device", default="cuda:1")
+    parser.add_argument("--text-device", default="auto",
+                        help="auto: cuda:1 with multiple GPUs, otherwise the generation device")
     parser.add_argument("--generation-device", default="cuda:0")
     args = parser.parse_args()
     if not 0 <= args.keep_steps <= STEPS:

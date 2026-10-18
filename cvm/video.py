@@ -8,6 +8,7 @@ from PIL import Image
 import torch
 
 from . import WIDTH, HEIGHT, FPS, FRAMES, STEPS, KEEP_STEPS, SEED, check_video
+from .devices import select_text_device
 
 STYLE_REFERENCE = (
     "The provided image condition is a visual style reference. "
@@ -56,6 +57,7 @@ class Condition:
 
 class H3:
     def __init__(self, text_device, generation_device):
+        text_device = select_text_device(text_device, generation_device, torch.cuda.device_count())
         def device(value):
             d = torch.device(value)
             return torch.device("cuda", 0) if d.type == "cuda" and d.index is None else d
@@ -191,7 +193,7 @@ class H3:
 
 
 def generate(proxy, image, prompt, model_root, output, *, seed=SEED, keep_steps=KEEP_STEPS,
-             text_device="cuda:1", generation_device="cuda:0"):
+             text_device="auto", generation_device="cuda:0"):
     if output.exists():
         raise FileExistsError(output)
     if not 0 <= keep_steps <= STEPS:

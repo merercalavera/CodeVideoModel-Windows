@@ -1,4 +1,5 @@
-# Install the CUDA 12.6 PyTorch wheels first as shown in README.md.
+# Install PyTorch wheels first: CUDA 12.6 for the upstream setup,
+# or CUDA 12.8 for RTX 5090 / Blackwell (see docs/windows.md).
 torch==2.7.1
 torchvision==0.22.1
 torchaudio==2.7.1

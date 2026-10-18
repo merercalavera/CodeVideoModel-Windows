@@ -23,6 +23,11 @@ https://github.com/user-attachments/assets/d1a8594d-14fa-49aa-a101-03da77ed585f
 
 ## Installation
 
+**Windows / RTX 5090:** read [the Windows deployment assessment](docs/windows.md)
+before downloading the checkpoint. This branch includes device selection fixes
+and a readiness checker, but the original whole-model offloading cannot fit the
+H3 text encoder or transformer on a 32 GB card.
+
 Use Ubuntu 22.04 and a CUDA 12.6-compatible NVIDIA driver for MiniMax-H3.
 
 ```bash
